@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "my demo",
+  "description": "只是一个crx demo",
+  "version": "1.0",
+
+  "permissions": [
+    "https://secure.flickr.com/",
+		"https://weibo.com/"
+  ],
+  "browser_action": {
+    "default_icon": "antenna.png",
+    "default_popup": "popup.html"
+  },
+	"background": {
+		"persistent": true,
+		"scripts": [ "background/main.js" ]
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://weibo.com/*"],
+      "css": [],
+      "js": [ "content.js" ]
+		}
+	],
+	"icons": { "96": "antenna.png" },
+	"permissions": [ "tabs", "contextMenus", "nativeMessaging", "\u003Call_urls>", "webRequest", "*://*.google.com/", "webRequestBlocking", "downloads", "clipboardWrite", "webNavigation", "notifications", "storage", "cookies", "contextMenus", "proxy" ]
+}
