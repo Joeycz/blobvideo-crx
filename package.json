@@ -1,0 +1,23 @@
+{
+  "name": "blobvideo-crx",
+  "version": "1.0.0",
+  "description": "## 使用方法",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joeycz/blobvideo-crx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joeycz/blobvideo-crx/issues"
+  },
+  "homepage": "https://github.com/Joeycz/blobvideo-crx#readme",
+  "dependencies": {
+    "async": "^3.2.0"
+  }
+}

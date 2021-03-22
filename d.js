@@ -1,23 +1,24 @@
 const { exec } = require('child_process');
 const { urls } = require('./msu8.json')
+const async = require('async')
 
 console.log(urls)
 
-function download (url, name) {
-	console.log('download====>', url)
-	exec(`ffmpeg -i ${url} -c copy -bsf:a aac_adtstoasc ${name}.mp4`, (err, stdout, stderr) => {
-		if (err) {
-			// node couldn't execute the command
-			console.log(err)
-			return;
-		}
-	
-		// the *entire* stdout and stderr (buffered)
-		console.log(`stdout: ${stdout}`);
-		console.log(`stderr: ${stderr}`);
-	});
+function download (urls, max) {
+	async.timesLimit(urls.length, max, function(i, next) {
+		exec(`ffmpeg -i ${urls[i].m3u8} -c copy -bsf:a aac_adtstoasc ${i}.${urls[i].tit}.mp4`, function (err, stdout, stderr) {
+			console.log('Data processed for:' + `${i}.${urls[i].tit}` + ' start...');
+			if (err) {
+				console.log(err)
+				return;
+			}
+			console.log(`stdout: ${i}.${urls[i].tit} done!`);
+			// console.log(`stderr: ${stderr}`);
+			next(null, stdout)
+		})
+	}, function(err, stdoutArray) {
+		console.log('all is done')
+	})
 }
 
-urls.forEach((url, index) => {
-	download(url, 'course' + index)
-})
+download(urls, 3)

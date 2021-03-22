@@ -17,3 +17,8 @@ git clone git@github.com:Joeycz/blobvideo-crx.git
 ```js
 node d
 ```
+
+## 相关工具和文档
+
+- https://www.aconvert.com/cn/document/xlsx-to-json/
+- https://www.zhihu.com/question/20562901
