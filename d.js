@@ -6,13 +6,14 @@ console.log(urls)
 
 function download (urls, max) {
 	async.timesLimit(urls.length, max, function(i, next) {
-		exec(`ffmpeg -i ${urls[i].m3u8} -c copy -bsf:a aac_adtstoasc ${i}.${urls[i].tit}.mp4`, function (err, stdout, stderr) {
-			console.log('Data processed for:' + `${i}.${urls[i].tit}` + ' start...');
+		const title = `${i}.${urls[i].tit}`.replace(/\s/g, '')
+		exec(`ffmpeg -i ${urls[i].m3u8} -c copy -bsf:a aac_adtstoasc ${title}.mp4`, function (err, stdout, stderr) {
+			console.log('Data processed for:' + `${title}` + ' starting...');
 			if (err) {
 				console.log(err)
 				return;
 			}
-			console.log(`stdout: ${i}.${urls[i].tit} done!`);
+			console.log(`stdout: ${title} done!`);
 			// console.log(`stderr: ${stderr}`);
 			next(null, stdout)
 		})
